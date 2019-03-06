@@ -1,13 +1,17 @@
 <?php
-include('CharacterRace.php');
-include('RaceOrc.php');
-include('RaceHuman.php');
-include('RaceUndead.php');
+include('Races/CharacterRace.php');
+include('Races/RaceOrc.php');
+include('Races/RaceHuman.php');
+include('Races/RaceUndead.php');
+include('Classes/CharacterClass.php');
 
-$humanClasses = ['b', 's'];
-$nowa = $humanClasses;$human = new RaceHuman('Alliance', 'aliance.img');
-$human->setAvailableClasses($humanClasses);
-$human->setAvailableClasses('a', 's');
+
+$priest = new CharacterClass('Priest', 'spells');
+print_r($priest);
+$human = new RaceHuman('Human', 'Alliance', 'aliance.img', 'Stormwind');
+
+$human->setAvailableClasses('a','s', 'g', 'e');
+
 print_r($human->getAvailableClasses());
 
 
