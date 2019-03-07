@@ -13,8 +13,8 @@ include_once('CharacterClass.php');
             $this->nick = $nick;
             $this->race = $race; //agregacja
             $this->class = $class; //agregacja
-    }
 
+    }
 
      function getNick()
     {

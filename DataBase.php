@@ -3,7 +3,7 @@
 class DataBase
 {
     public $connection;
-
+    private static $instance;
     public function __construct($host="localhost", $user="root", $password ="")
     {
         //nawiązanie połączenia
@@ -14,6 +14,15 @@ class DataBase
         //nawiązanie połączenia z bazą Wow
         $this->connection = mysqli_connect($host, $user, $password, "Wow");
 
+    }
+
+    public function getInstance() //Wzorzec Singleton
+    {
+        if(self::$instance == null){
+            self::$instance = new DataBase();
+        }else{
+            return self::$instance;
+        }
     }
 
     public function createDataBase()
@@ -27,7 +36,7 @@ class DataBase
         $this->isQueryExecute($sql);
 
         $sql = "CREATE TABLE Class(
-                class VARCHAR(30) NOT NULL PRIMARY KEY,
+                class VARCHAR(30) NOT NULL PRIMARY KEY
                 )";
         $this->isQueryExecute($sql);
 
@@ -38,12 +47,12 @@ class DataBase
                 )";
         $this->isQueryExecute($sql);
 
-        $sql = "CREATE TABLE Character(
+        $sql = "CREATE TABLE Game_character(
                 Class_FK VARCHAR(30),
                 Race_FK VARCHAR(30),
                 Player_FK VARCHAR(30),
                 character_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                nick VARCHAR(30) NOT NULL PRIMARY KEY,
+                nick VARCHAR(30) NOT NULL,
                 FOREIGN KEY (Class_FK) REFERENCES Class(class),
                 FOREIGN KEY (Race_FK) REFERENCES Race(race),
                 FOREIGN KEY (Player_FK) REFERENCES Player(email)

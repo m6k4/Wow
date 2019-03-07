@@ -21,8 +21,8 @@ $orc->setAvailableClasses( 'Rogue', 'Hunter');
 
 $zuza11 = new Character('zuza11', $human, $priest);
 $db = new DataBase();
+$db->createDataBase();
 
-echo $zuza11;
 
 
 
