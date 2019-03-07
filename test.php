@@ -1,18 +1,28 @@
 <?php
-include('Races/CharacterRace.php');
-include('Races/RaceOrc.php');
-include('Races/RaceHuman.php');
-include('Races/RaceUndead.php');
-include('Classes/CharacterClass.php');
+include('CharacterRace.php');
+include('CharacterClass.php');
+include('Character.php');
 
 
-$priest = new CharacterClass('Priest', 'spells');
-print_r($priest);
-$human = new RaceHuman('Human', 'Alliance', 'aliance.img', 'Stormwind');
+//wszystkie dostępne rasy
+$human = new CharacterRace('Human', 'Alliance', 'human.img', 'Stormwind');
+$orc = new CharacterRace('Orc', 'Horde', 'orc.img', 'Blackrock Spire');
 
-$human->setAvailableClasses('a','s', 'g', 'e');
+//wszystkie dostępne klasy
+$priest = new CharacterClass('Priest');
+$rogue = new CharacterClass('Rogue');
+$mage = new CharacterClass('Mage');
+$hunter = new CharacterClass('Hunter');
 
-print_r($human->getAvailableClasses());
+//klasy dostępne dla poszczególnych ras
+$humanClasses = ['Priest', 'Rogue', 'Mage'];
+$human->setAvailableClasses($humanClasses);
+$orc->setAvailableClasses( 'Rogue', 'Hunter');
+
+$zuza11 = new Character('zuza11', $human, $priest);
+
+echo $zuza11;
+
 
 
 ?>

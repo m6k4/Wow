@@ -1,15 +1,13 @@
 <?php
 
 
-
-
-abstract class CharacterRace
+ class CharacterRace
 {
-    protected $race;
-    protected $fraction;
-    protected $avatar_img;
-    protected $availableClasses;
-    protected $capital_city;
+    private $race;
+    private $fraction;
+    private $avatar_img;
+    private $availableClasses;
+    private $capital_city;
 
 
     function __construct($race, $fraction, $avatar_img, $capital_city)
@@ -25,12 +23,11 @@ abstract class CharacterRace
         //przeciazenie metody
         if(is_array($availableClasses)){
             $this->availableClasses = $availableClasses;
-        }else{
-            $args = func_get_args();
-            $this->availableClasses[] = $args;
-
         }
-
+        else{
+            $args = func_get_args();
+            $this->availableClasses = $args;
+        }
     }
 
     function getAvailableClasses()
@@ -38,19 +35,10 @@ abstract class CharacterRace
         return $this->availableClasses;
     }
 
-    function  getFraction()
+    function __toString()
     {
-        return $this->fraction;
+        return "[Race]: ". $this->race. " - ". $this->fraction;
     }
 
-    function getAvatarImg()
-    {
-        return $this->avatar_img;
-    }
 
-    function getCapitalCity()
-    {
-        return $this->capital_city;
-    }
-
-}
+ }
