@@ -2,7 +2,7 @@
 include('CharacterRace.php');
 include('CharacterClass.php');
 include('Character.php');
-
+include ('DataBase.php');
 
 //wszystkie dostępne rasy
 $human = new CharacterRace('Human', 'Alliance', 'human.img', 'Stormwind');
@@ -20,6 +20,7 @@ $human->setAvailableClasses($humanClasses);
 $orc->setAvailableClasses( 'Rogue', 'Hunter');
 
 $zuza11 = new Character('zuza11', $human, $priest);
+$db = new DataBase();
 
 echo $zuza11;
 
