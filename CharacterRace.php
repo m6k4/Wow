@@ -4,18 +4,18 @@
  class CharacterRace
 {
     private $race;
-    private $fraction;
+    private $fraction; //atrybut opcjonalny, np. Pandareni nie należą do żadnej frakcji
     private $avatar_img;
     private $availableClasses;
     private $capital_city;
 
 
-    function __construct($race, $fraction, $avatar_img, $capital_city)
+    function __construct($race, $avatar_img, $capital_city, $fraction = null)
     {
         $this->race = $race;
-        $this->fraction = $fraction;
         $this->avatar_img = $avatar_img;
-        $this->capital_city=$capital_city;
+        $this->capital_city= $capital_city;
+        $this->fraction = $fraction;
     }
 
     function setAvailableClasses($availableClasses, $class1 = null, $class2 = null,$class3 = null, $class4 = null, $class5 = null, $class6 = null, $class7 = null)

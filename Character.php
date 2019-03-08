@@ -1,18 +1,28 @@
 <?php
+
+use http\Encoding\Stream;
+
 include_once('CharacterRace.php');
 include_once('CharacterClass.php');
 
- class Character
+ class Character implements Serializable
 {
     private $nick;
     private $class;
     private $race;
 
+     public function serialize() {
+
+     }
+     public function unserialize($nick) {
+         $this->nick = unserialize($nick);
+     }
+
     function __construct($nick, CharacterRace $race, CharacterClass $class)
     {
-            $this->nick = $nick;
-            $this->race = $race; //agregacja
-            $this->class = $class; //agregacja
+        $this->nick = $nick;
+        $this->race = $race; //agregacja
+        $this->class = $class; //agregacja
 
     }
 

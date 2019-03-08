@@ -4,9 +4,9 @@
 class CharacterClass
 {
     private $class_name;
-    private $spells;
+    private $spells; //powtarzaln, opcjonalny
 
-    function __construct($class_name, $spells = null)
+    function __construct( $class_name, $spells = null)
     {
         $this->class_name = $class_name;
         $this->spells = $spells;
