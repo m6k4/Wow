@@ -12,12 +12,12 @@ class CharacterClass
         $this->spells = $spells;
     }
 
-    function getClassName()
+    function getClassName() : String
     {
         return $this->class_name;
     }
 
-    function getSpells()
+    function getSpells() : array
     {
         return $this->spells;
     }

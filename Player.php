@@ -17,7 +17,7 @@ class Player extends User
         $this->list_of_characters[] = $character;
     }
 
-    function getListOfCharacters()
+    function getListOfCharacters() : array
     {
         return $this->list_of_characters;
     }

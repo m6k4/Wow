@@ -40,7 +40,7 @@ class Employee extends User
         }
     }
 
-    static function getExtension()
+    static function getExtension() : array
     {
         return self::$extension;
     }

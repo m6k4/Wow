@@ -17,6 +17,7 @@ $rogue = new CharacterClass('Rogue');
 $mage = new CharacterClass('Mage');
 $hunter = new CharacterClass('Hunter');
 
+echo $priest->getClassName();
 //klasy dostępne dla poszczególnych ras
 //$humanClasses = ['Priest', 'Rogue', 'Mage'];
 //$human->setAvailableClasses($humanClasses);
@@ -24,16 +25,7 @@ $hunter = new CharacterClass('Hunter');
 //
 //$zuza11 = new Character('zuza11', $human, $priest);
 //
-$zuza = new Employee( 'zuza', 'zuza@op.pl', 2000, 'tester' );
-Employee::changeSallary(200);
-$extension = Employee::getExtension();
-$serialized = serialize($extension);
 
-//$extension = serialize($extension);
-file_put_contents('extensionFile.txt', $serialized);
-$input = file_get_contents('extensionFile.txt');
-$unserialized = unserialize($input);
-var_dump($unserialized);
 
 
 //$output_stream = fopen('extensionFile.txt','w');
