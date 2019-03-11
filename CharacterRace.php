@@ -4,7 +4,7 @@
  class CharacterRace
 {
     private $race;
-    private $fraction; //atrybut opcjonalny, np. Pandareni nie należą do żadnej frakcji
+    private $fraction; //atrybut opcjonalny
     private $avatar_img;
     private $availableClasses;
     private $capital_city;
