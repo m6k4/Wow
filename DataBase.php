@@ -1,5 +1,5 @@
 <?php
-
+include("test.php");
 class DataBase
 {
     public $connection;
@@ -16,7 +16,7 @@ class DataBase
 
     }
 
-    public function getInstance() //Wzorzec Singleton
+    public function getInstance() // Singleton
     {
         if(self::$instance == null){
             self::$instance = new DataBase();
@@ -30,8 +30,8 @@ class DataBase
         $sql = "CREATE TABLE Race(
                 race VARCHAR(30) NOT NULL PRIMARY KEY,
                 fraction VARCHAR(30) NOT NULL,
-                avatar_img VARCHAR(30)NOT NULL,
-                capital_city VARCHAR(30)NOT NULL
+                avatarImg VARCHAR(30)NOT NULL,
+                capitalCity VARCHAR(30)NOT NULL
                 )";
         $this->isQueryExecute($sql);
 
@@ -68,6 +68,37 @@ class DataBase
                 FOREIGN KEY (User_FK) REFERENCES User(email)
                 )";
         $this->isQueryExecute($sql);
+
+    }
+
+    public function createCharacterRace($class)
+    {
+        $sql = "INSERT INTO
+                Race(class) VALUES
+                ('$class')";
+
+        if($this->isQueryExecute($sql))
+        {
+            $class = new CharacterClass($class);
+        };
+    }
+
+    public function createCharacterClass()
+    {
+        $sql = "INSERT INTO
+                Class(race, fraction, avatarImg, capitalCity) VALUES
+                ('$race', '$fraction', '$avatarImg', '$capitalCity')";
+
+        if($this->isQueryExecute($sql))
+        {
+            $race = new CharacterRace($race, $fraction, $avatarImg, $capitalCity);
+        };
+    }
+
+    }
+
+    public function createNewCharacter()
+    {
 
     }
 
