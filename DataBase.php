@@ -71,10 +71,10 @@ class DataBase
 
     }
 
-    public function createCharacterRace($class)
+    public function createCharacterClass($class)
     {
         $sql = "INSERT INTO
-                Race(class) VALUES
+                Class(class) VALUES
                 ('$class')";
 
         if($this->isQueryExecute($sql))
@@ -83,10 +83,10 @@ class DataBase
         };
     }
 
-    public function createCharacterClass()
+    public function createCharacterRace($race, $fraction, $avatarImg, $capitalCity)
     {
         $sql = "INSERT INTO
-                Class(race, fraction, avatarImg, capitalCity) VALUES
+                Race(race, fraction, avatarImg, capitalCity) VALUES
                 ('$race', '$fraction', '$avatarImg', '$capitalCity')";
 
         if($this->isQueryExecute($sql))
@@ -95,7 +95,7 @@ class DataBase
         };
     }
 
-    }
+
 
     public function createNewCharacter()
     {
