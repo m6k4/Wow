@@ -5,18 +5,11 @@ use http\Encoding\Stream;
 include_once('CharacterRace.php');
 include_once('CharacterClass.php');
 
- class Character implements Serializable
+ class Character
 {
     private $nick;
     private $class;
     private $race;
-
-     public function serialize() {
-
-     }
-     public function unserialize($nick) {
-         $this->nick = unserialize($nick);
-     }
 
     function __construct($nick, CharacterRace $race, CharacterClass $class)
     {
@@ -26,17 +19,17 @@ include_once('CharacterClass.php');
 
     }
 
-     function getNick()
+     function getNick() : String
     {
         return $this->nick;
     }
 
-    function  getRace()
+    function  getRace() : CharacterRace
     {
         return $this->race;
     }
 
-    function  getClass()
+    function  getClass() : CharacterClass
     {
         return $this->class;
     }

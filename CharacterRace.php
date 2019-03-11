@@ -30,7 +30,7 @@
         }
     }
 
-    function getAvailableClasses()
+    function getAvailableClasses() : array
     {
         return $this->availableClasses;
     }

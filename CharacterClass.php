@@ -4,7 +4,7 @@
 class CharacterClass
 {
     private $class_name;
-    private $spells; //powtarzaln, opcjonalny
+    private $spells; //powtarzalny, opcjonalny
 
     function __construct( $class_name, $spells = null)
     {
@@ -12,12 +12,12 @@ class CharacterClass
         $this->spells = $spells;
     }
 
-    function getClassName()
+    function getClassName() : String
     {
         return $this->class_name;
     }
 
-    function getSpells()
+    function getSpells() : array
     {
         return $this->spells;
     }

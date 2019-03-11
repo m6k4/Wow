@@ -40,22 +40,32 @@ class DataBase
                 )";
         $this->isQueryExecute($sql);
 
-        $sql = "CREATE TABLE Player(
-                email VARCHAR(30) NOT NULL PRIMARY KEY,
-                name VARCHAR(30) NOT NULL,
-                player_number VARCHAR(30) NOT NULL UNIQUE
+        $sql = "CREATE TABLE UserType(
+                Type VARCHAR(30) NOT NULL PRIMARY KEY
                 )";
         $this->isQueryExecute($sql);
 
-        $sql = "CREATE TABLE Game_character(
+        $sql = "CREATE TABLE User(
+                email VARCHAR(30) NOT NULL PRIMARY KEY,
+                name VARCHAR(30) NOT NULL,
+                userType_FK VARCHAR(30),
+                salary VARCHAR(30),
+                position VARCHAR(30),
+                employer VARCHAR(30),
+                playerNumber VARCHAR(30),
+                FOREIGN KEY (UserType_FK) REFERENCES UserType(type)
+                )";
+        $this->isQueryExecute($sql);
+
+        $sql = "CREATE TABLE GameCharacter(
                 Class_FK VARCHAR(30),
                 Race_FK VARCHAR(30),
-                Player_FK VARCHAR(30),
+                User_FK VARCHAR(30),
                 character_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                 nick VARCHAR(30) NOT NULL,
                 FOREIGN KEY (Class_FK) REFERENCES Class(class),
                 FOREIGN KEY (Race_FK) REFERENCES Race(race),
-                FOREIGN KEY (Player_FK) REFERENCES Player(email)
+                FOREIGN KEY (User_FK) REFERENCES User(email)
                 )";
         $this->isQueryExecute($sql);
 
