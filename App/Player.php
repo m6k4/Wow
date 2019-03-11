@@ -22,6 +22,11 @@ class Player extends User
         return $this->list_of_characters;
     }
 
+    function getPlayerNumber() : int
+    {
+        return self::$player_number;
+    }
+
     function __toString()
     {
         return "[name]: ". $this->name. "\n[email]: ". $this->email.

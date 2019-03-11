@@ -1,0 +1,14 @@
+{
+  "name": "your-vendor-name/package-name",
+  "description": "A short description of what your package does",
+  "license": "MIT",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "phpunit/phpunit": "4.3.*"
+  }
+}

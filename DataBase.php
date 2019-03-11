@@ -133,7 +133,7 @@ class DataBase
                 FROM Race
                 ";
         $result = $this->isQueryExecute($sql);
-        while($row=mysqli_fetch_row($result)){
+        while($row=mysqli_fetch_assoc($result)){
             $table[] = $row;
         }
         return $table;
@@ -145,7 +145,7 @@ class DataBase
                 FROM Class
                 ";
         $result = $this->isQueryExecute($sql);
-        while($row=mysqli_fetch_row($result)){
+        while($row=mysqli_fetch_assoc($result)){
             $table[] = $row;
         }
         return $table;
@@ -158,7 +158,7 @@ class DataBase
                 FROM GameCharacter
                 ";
         $result = $this->isQueryExecute($sql);
-        while($row=mysqli_fetch_row($result)){
+        while($row=mysqli_fetch_assoc($result)){
             $table[] = $row;
         }
         return $table;
@@ -171,7 +171,7 @@ class DataBase
                 FROM User
                 ";
         $result = $this->isQueryExecute($sql);
-        while($row=mysqli_fetch_row($result)){
+        while($row=mysqli_fetch_assoc($result)){
             $table[] = $row;
         }
         return $table;
@@ -186,19 +186,10 @@ class DataBase
         $sql = "INSERT INTO
                 GameCharacter(Race_FK, Class_FK, User_FK, nick) VALUES
                 ('$raceName', '$className', '$user', '$nick')";
-
         return $this->isQueryExecute($sql);
     }
 
-    public function getRows($table)
-    {
-        $sql = "SELECT COUNT(*)
-                FROM $table";
 
-        $result = $this->isQueryExecute($sql);
-        $row=mysqli_fetch_row($result);
-        return $row;
-    }
 
 
 

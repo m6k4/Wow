@@ -1,7 +1,7 @@
 <?php
 
-include ('User.php');
-include ('Employee.php');
+include('User.php');
+include('Employee.php');
 
 $zuza = new Employee( 'zuza', 'zuza@op.pl', 2000, 'tester' );
 Employee::changeSallary(200);
