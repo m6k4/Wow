@@ -35,6 +35,11 @@
         return $this->availableClasses;
     }
 
+    function getRaceName() : String
+    {
+        return $this->race;
+    }
+
     function __toString()
     {
         return "[Race]: ". $this->race. " - ". $this->fraction;

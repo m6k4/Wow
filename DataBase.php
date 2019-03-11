@@ -1,5 +1,5 @@
 <?php
-include("test.php");
+include_once("test.php");
 class DataBase
 {
     public $connection;
@@ -41,7 +41,7 @@ class DataBase
         $this->isQueryExecute($sql);
 
         $sql = "CREATE TABLE UserType(
-                Type VARCHAR(30) NOT NULL PRIMARY KEY
+                UserType VARCHAR(30) NOT NULL PRIMARY KEY
                 )";
         $this->isQueryExecute($sql);
 
@@ -49,11 +49,11 @@ class DataBase
                 email VARCHAR(30) NOT NULL PRIMARY KEY,
                 name VARCHAR(30) NOT NULL,
                 userType_FK VARCHAR(30),
-                salary VARCHAR(30),
+                salary INT,
                 position VARCHAR(30),
                 employer VARCHAR(30),
-                playerNumber VARCHAR(30),
-                FOREIGN KEY (UserType_FK) REFERENCES UserType(type)
+                playerNumber INT,
+                FOREIGN KEY (UserType_FK) REFERENCES UserType(UserType)
                 )";
         $this->isQueryExecute($sql);
 
@@ -71,16 +71,51 @@ class DataBase
 
     }
 
+    public function fillDataBase()
+    {
+        $sql = "INSERT INTO
+        Class(class) VALUES
+               ('Priest'),
+               ('Rogue'),
+               ('Mage')
+               ";
+        $this->isQueryExecute( $sql);
+
+        $sql = "INSERT INTO
+        Race(race, fraction, avatarImg, capitalCity) VALUES
+               ('Human', 'Alliance', 'human.img', 'Stormwind'),
+               ('Orc', 'Horde', 'orc.img', 'Blackrock Spire')
+               ";
+        $this->isQueryExecute( $sql);
+
+        $sql = "INSERT INTO
+        UserType(userType) VALUES
+               ('Player'),
+               ('Employee')
+               ";
+        $this->isQueryExecute( $sql);
+
+        $sql = "INSERT INTO
+        User(email, name, userType_FK, salary, position, employer) VALUES
+               ('ania@op.pl', 'ania', 'Employee',  300, 'tester', 'Blizzard')
+               ";
+        $this->isQueryExecute( $sql);
+
+        $sql = "INSERT INTO
+        User(email, name, userType_FK, playerNumber) VALUES
+               ('kasia@op.pl', 'kasia', 'Player', 151848 )
+               ";
+        $this->isQueryExecute( $sql);
+
+    }
+
     public function createCharacterClass($class)
     {
         $sql = "INSERT INTO
                 Class(class) VALUES
                 ('$class')";
 
-        if($this->isQueryExecute($sql))
-        {
-            $class = new CharacterClass($class);
-        };
+        return $this->isQueryExecute($sql);
     }
 
     public function createCharacterRace($race, $fraction, $avatarImg, $capitalCity)
@@ -89,19 +124,81 @@ class DataBase
                 Race(race, fraction, avatarImg, capitalCity) VALUES
                 ('$race', '$fraction', '$avatarImg', '$capitalCity')";
 
-        if($this->isQueryExecute($sql))
-        {
-            $race = new CharacterRace($race, $fraction, $avatarImg, $capitalCity);
-        };
+        return $this->isQueryExecute($sql);
     }
 
-
-
-    public function createNewCharacter()
+    public function getAllCharacterRaces()
     {
+        $sql = "SELECT *
+                FROM Race
+                ";
+        $result = $this->isQueryExecute($sql);
+        while($row=mysqli_fetch_row($result)){
+            $table[] = $row;
+        }
+        return $table;
+    }
+
+    public function getAllCharacterClasses()
+    {
+        $sql = "SELECT *
+                FROM Class
+                ";
+        $result = $this->isQueryExecute($sql);
+        while($row=mysqli_fetch_row($result)){
+            $table[] = $row;
+        }
+        return $table;
 
     }
 
+    public function getAllGameCharacters()
+    {
+        $sql = "SELECT *
+                FROM GameCharacter
+                ";
+        $result = $this->isQueryExecute($sql);
+        while($row=mysqli_fetch_row($result)){
+            $table[] = $row;
+        }
+        return $table;
+
+    }
+
+    public function getAllUsers()
+    {
+        $sql = "SELECT *
+                FROM User
+                ";
+        $result = $this->isQueryExecute($sql);
+        while($row=mysqli_fetch_row($result)){
+            $table[] = $row;
+        }
+        return $table;
+
+    }
+
+    public function createNewCharacter(CharacterRace $race, CharacterClass $class, User $user, $nick)
+    {
+        $raceName = $race->getRaceName();
+        $className = $class->getClassName();
+        $user = $user->getEmail();
+        $sql = "INSERT INTO
+                GameCharacter(Race_FK, Class_FK, User_FK, nick) VALUES
+                ('$raceName', '$className', '$user', '$nick')";
+
+        return $this->isQueryExecute($sql);
+    }
+
+    public function getRows($table)
+    {
+        $sql = "SELECT COUNT(*)
+                FROM $table";
+
+        $result = $this->isQueryExecute($sql);
+        $row=mysqli_fetch_row($result);
+        return $row;
+    }
 
 
 

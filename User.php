@@ -11,6 +11,11 @@ abstract class User
         $this->email = $email;
     }
 
+    function getEmail() : String
+    {
+        return $this->email;
+    }
+
 
 
 }

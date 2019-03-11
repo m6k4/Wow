@@ -1,6 +1,6 @@
 <?php
 
-include('Character.php');
+include_once('Character.php');
 
 class Player extends User
 {
