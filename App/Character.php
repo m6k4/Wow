@@ -19,6 +19,7 @@ include_once('CharacterClass.php');
 
     }
 
+
      function getNick() : String
     {
         return $this->nick;

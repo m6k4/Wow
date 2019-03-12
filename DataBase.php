@@ -1,5 +1,5 @@
 <?php
-include_once("test.php");
+
 class DataBase
 {
     public $connection;
@@ -47,6 +47,7 @@ class DataBase
 
         $sql = "CREATE TABLE User(
                 email VARCHAR(30) NOT NULL PRIMARY KEY,
+                password VARCHAR (30) NOT NULL,
                 name VARCHAR(30) NOT NULL,
                 userType_FK VARCHAR(30),
                 salary INT,
@@ -96,14 +97,14 @@ class DataBase
         $this->isQueryExecute( $sql);
 
         $sql = "INSERT INTO
-        User(email, name, userType_FK, salary, position, employer) VALUES
-               ('ania@op.pl', 'ania', 'Employee',  300, 'tester', 'Blizzard')
+        User(email, password, name, userType_FK, salary, position, employer) VALUES
+               ('ania@op.pl', 'qwerty123', 'ania', 'Employee',  300, 'tester', 'Blizzard')
                ";
         $this->isQueryExecute( $sql);
 
         $sql = "INSERT INTO
-        User(email, name, userType_FK, playerNumber) VALUES
-               ('kasia@op.pl', 'kasia', 'Player', 151848 )
+        User(email, password, name, userType_FK, playerNumber) VALUES
+               ('kasia@op.pl', 'a1b2c3', 'kasia', 'Player', 151848 )
                ";
         $this->isQueryExecute( $sql);
 
@@ -175,6 +176,19 @@ class DataBase
             $table[] = $row;
         }
         return $table;
+
+    }
+
+    public function getUser($email, $password)
+    {
+        $sql = "SELECT *
+                FROM User
+                WHERE email = '$email' AND password = '$password'
+                ";
+        $result = $this->isQueryExecute($sql);
+        $row=mysqli_fetch_assoc($result);
+
+        return $row;
 
     }
 
