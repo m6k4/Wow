@@ -20,9 +20,9 @@ class DataBase
     {
         if(self::$instance == null){
             self::$instance = new DataBase();
-        }else{
-            return self::$instance;
         }
+        return self::$instance;
+
     }
 
     public function createDataBase()
@@ -212,10 +212,10 @@ class DataBase
     private function isQueryExecute($sql)
     {
         if ($result = mysqli_query($this->connection, $sql)) {
-            echo "Query execute succesfull " . "\n";
+//            echo "Query execute succesfull " . "\n";
             return $result;
         } else {
-            echo "Query not execute " . mysqli_error($this->connection). "\n";
+//            echo "Query not execute " . mysqli_error($this->connection). "\n";
             return false;
         }
     }

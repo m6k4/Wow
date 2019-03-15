@@ -1,7 +1,10 @@
 <?php
 
 include_once("../DataBase.php");
-$db = new DataBase();
+include_once("../App/User.php");
+include_once("../App/Player.php");
+
+$db = DataBase::getInstance();
 
 ?>
 <pre>
@@ -23,9 +26,11 @@ $db = new DataBase();
     <p> Welcome <?php echo $user['name'] ?> </p>
     <?php
     $_SESSION['user'] = $user;
+    $playerNumber = $_SESSION['user']['playerNumber'];
     ?>
-<p> <a href = "../html/menu.php" id = menu_link>Go to your panel</a></p>
-
+    <p> Your player number is <?php echo $playerNumber; ?> </p>
+    <p> <a href = "../html/menu.php" id = menu_link>Go to your panel</a></p>
+    <?php $kasia = new Player('ania', 'ania@op.pl'); ?>
 <?php else: ?>
     <p>Email or password is incorrect</p>
 <?php endif ?>

@@ -1,7 +1,5 @@
 <?php
 
-
-
 include_once('CharacterRace.php');
 include_once('CharacterClass.php');
 
